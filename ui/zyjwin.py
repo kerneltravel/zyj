@@ -8,7 +8,7 @@ from PyQt4.QtGui import QMainWindow
 from PyQt4.QtCore import pyqtSignature, QString
 
 from Ui_zyj import Ui_ZyjWin
-#from data.zyjdata import *
+#from data.zyjdata import ZyjDataLogic
 
 class ZyjWin(QMainWindow, Ui_ZyjWin):
     """
@@ -18,6 +18,10 @@ class ZyjWin(QMainWindow, Ui_ZyjWin):
         """
         Constructor
         """
+        self.dataL = None
+        self.nPageCount = None
+        self.nPagePer = None
+        
         QMainWindow.__init__(self, parent)
         self.setupUi(self)
         #self.keywd = ""
@@ -51,4 +55,18 @@ class ZyjWin(QMainWindow, Ui_ZyjWin):
             print queryStr
             self.model.setQuery(queryStr)
             self.contentTableview.setModel(self.model)
-            
+            print self.model.rowCount()
+    def on_bookCombox_Changed(self):
+        pass
+    def on_bookpartCombox_Changed(self):
+        pass
+    def on_preButton_clicked(self):
+        pass
+    def on_nextButton_clicked(self):
+        pass
+    def on_headButton_clicked(self):
+        pass
+    def on_cell(self):
+        pass
+    def on_links(self):
+        pass

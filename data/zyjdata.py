@@ -1,8 +1,7 @@
 from PyQt4 import QtCore, QtGui, QtSql
 
-import connection
 
-class ZyjDataOp(QtSql.QSqlQueryModel):
+class ZyjData(QtSql.QSqlQueryModel):
     def __init__(self):
         super(ZyjDataOp, self).__init__()
         #if not connection.createConnection():
@@ -39,4 +38,24 @@ class ZyjDataOp(QtSql.QSqlQueryModel):
         self.setHeaderData(0, QtCore.Qt.Horizontal, "ID")
         self.setHeaderData(1, QtCore.Qt.Horizontal, "Article")
         self.setHeaderData(2, QtCore.Qt.Horizontal, "Contens")
+        pass
+
+class ZyjDataLogic:
+    def __init__(self):
+        self.d = ZyjData()
+        self.PageModel = None
+        self.nPageCount = 0
+        self.nArticlePerPage = 0
+        self.oldQuery = None
+        
+    def update_article(self, title, content, tags):
+        pass
+    def delete_article(self, docid):
+        pass
+    def get_article(self, docid):
+        pass
+    '''def keywordResult(self, keyword, resutStartFrom):
+        pass
+        '''
+    def getCurPageModel(self):
         pass

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>696</width>
-    <height>600</height>
+    <width>701</width>
+    <height>627</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -37,7 +37,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QComboBox" name="categoryCbox">
+   <widget class="QComboBox" name="bookCombox">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -46,11 +46,6 @@
       <height>22</height>
      </rect>
     </property>
-    <item>
-     <property name="text">
-      <string>category</string>
-     </property>
-    </item>
    </widget>
    <widget class="QListWidget" name="tagsListWidget">
     <property name="geometry">
@@ -79,9 +74,9 @@
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>70</y>
-      <width>75</width>
-      <height>23</height>
+      <y>30</y>
+      <width>111</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -94,8 +89,57 @@
       <x>20</x>
       <y>100</y>
       <width>481</width>
-      <height>461</height>
+      <height>441</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="bookpartCombox">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>70</y>
+      <width>151</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="headButton">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>550</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Head</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="preButton">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>550</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pre</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="nextButton">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>550</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Next</string>
     </property>
    </widget>
   </widget>
@@ -104,7 +148,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>696</width>
+     <width>701</width>
      <height>17</height>
     </rect>
    </property>
@@ -113,7 +157,7 @@
  </widget>
  <tabstops>
   <tabstop>keywdPlainTextEdit</tabstop>
-  <tabstop>categoryCbox</tabstop>
+  <tabstop>bookCombox</tabstop>
   <tabstop>tagsListWidget</tabstop>
  </tabstops>
  <resources/>
