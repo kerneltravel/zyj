@@ -20,7 +20,8 @@ class ZyjWin(QMainWindow, Ui_ZyjWin):
         """
         self.dataL = None
         self.nPageCount = None
-        self.nPagePer = None
+        self.nPageCur = 1
+        self.nPagePer = 100
         
         QMainWindow.__init__(self, parent)
         self.setupUi(self)
@@ -28,13 +29,12 @@ class ZyjWin(QMainWindow, Ui_ZyjWin):
         #self.data = ZyjDataOp()
         
         self.model = QtSql.QSqlQueryModel()
-        self.model.setQuery('select docid,title,content from articles_vt limit 0,100')
+        self.model.setQuery('select docid,title,content from articles_vt limit 0,%s'%self.nPagePer)
         print 'last sql error:'
         print self.model.lastError().text()
         #self.select()
         print self.model.record(0).value("content").toString().isEmpty()
         #model.setEditStrategy(QtSql.QSqlTableModel.OnManualSubmit)
-        #model.select()
         print '===========x=='
         self.model.setHeaderData(0, QtCore.Qt.Horizontal, "ID")
         self.model.setHeaderData(1, QtCore.Qt.Horizontal, "Article")
@@ -42,7 +42,7 @@ class ZyjWin(QMainWindow, Ui_ZyjWin):
         self.contentTableview.setModel(self.model)
         #self.contentTableview.show()
         
-        
+    @QtCore.pyqtSignature("") 
     def on_searchButton_clicked(self):
         self.keywd = self.keywdPlainTextEdit.toPlainText()
         if self.keywd.isEmpty():
@@ -50,22 +50,40 @@ class ZyjWin(QMainWindow, Ui_ZyjWin):
         else:
             #self.model.doQuery(self.keywd)
             #qstringKeywd = QString(self.keywd)
-            queryStr = "select docid,title,content from articles_vt where articles_vt match '%s'" % self.keywd
+            queryStr = "select docid,title,content from articles_vt where articles_vt match '%s' limit %s,%s"% (self.keywd, 
+                                                                                                                (self.nPageCur-1)*self.nPagePer, self.nPagePer)
             #sql = "SELECT * FROM server WHERE platform='%s'" % platform
             print queryStr
             self.model.setQuery(queryStr)
             self.contentTableview.setModel(self.model)
             print self.model.rowCount()
+            
+    @QtCore.pyqtSignature("")
     def on_bookCombox_Changed(self):
         pass
+    
+    @QtCore.pyqtSignature("")
     def on_bookpartCombox_Changed(self):
         pass
+    
+    @QtCore.pyqtSignature("")
     def on_preButton_clicked(self):
+        if self.nPageCur > 0:
+            self.nPageCur = self.nPageCur-1
+            self.on_searchButton_clicked()
         pass
+    
+    @QtCore.pyqtSignature("")
     def on_nextButton_clicked(self):
-        pass
+        self.nPageCur = self.nPageCur+1
+        self.on_searchButton_clicked()
+    
+    @QtCore.pyqtSignature("")
     def on_headButton_clicked(self):
+        self.nPageCur = 1
+        self.on_searchButton_clicked()
         pass
+        
     def on_cell(self):
         pass
     def on_links(self):
