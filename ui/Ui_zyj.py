@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'D:\tmp\python\zyj_pyqt\ui\zyj.ui'
 #
-# Created: Sun Feb 10 20:38:15 2013
+# Created: Sat Mar 02 10:25:23 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -41,6 +41,16 @@ class Ui_ZyjWin(object):
         self.tagsListWidget = QtGui.QListWidget(self.centralwidget)
         self.tagsListWidget.setGeometry(QtCore.QRect(525, 100, 161, 461))
         self.tagsListWidget.setObjectName(_fromUtf8("tagsListWidget"))
+        item = QtGui.QListWidgetItem()
+        self.tagsListWidget.addItem(item)
+        item = QtGui.QListWidgetItem()
+        self.tagsListWidget.addItem(item)
+        item = QtGui.QListWidgetItem()
+        self.tagsListWidget.addItem(item)
+        item = QtGui.QListWidgetItem()
+        self.tagsListWidget.addItem(item)
+        item = QtGui.QListWidgetItem()
+        self.tagsListWidget.addItem(item)
         self.tagsLabel = QtGui.QLabel(self.centralwidget)
         self.tagsLabel.setGeometry(QtCore.QRect(530, 70, 91, 16))
         self.tagsLabel.setObjectName(_fromUtf8("tagsLabel"))
@@ -79,6 +89,19 @@ class Ui_ZyjWin(object):
     def retranslateUi(self, ZyjWin):
         ZyjWin.setWindowTitle(_translate("ZyjWin", "Traditional Chinese Medicine Manual", None))
         self.searchlabel.setText(_translate("ZyjWin", "I\'d search...", None))
+        __sortingEnabled = self.tagsListWidget.isSortingEnabled()
+        self.tagsListWidget.setSortingEnabled(False)
+        item = self.tagsListWidget.item(0)
+        item.setText(_translate("ZyjWin", "理", None))
+        item = self.tagsListWidget.item(1)
+        item.setText(_translate("ZyjWin", "法", None))
+        item = self.tagsListWidget.item(2)
+        item.setText(_translate("ZyjWin", "方", None))
+        item = self.tagsListWidget.item(3)
+        item.setText(_translate("ZyjWin", "药", None))
+        item = self.tagsListWidget.item(4)
+        item.setText(_translate("ZyjWin", "其他", None))
+        self.tagsListWidget.setSortingEnabled(__sortingEnabled)
         self.tagsLabel.setText(_translate("ZyjWin", "Quick Link:", None))
         self.searchButton.setText(_translate("ZyjWin", "search", None))
         self.headButton.setText(_translate("ZyjWin", "Head", None))

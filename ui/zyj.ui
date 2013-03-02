@@ -56,6 +56,31 @@
       <height>461</height>
      </rect>
     </property>
+    <item>
+     <property name="text">
+      <string>理</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>法</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>方</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>药</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>其他</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLabel" name="tagsLabel">
     <property name="geometry">
