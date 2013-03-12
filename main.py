@@ -1,6 +1,10 @@
+import atexit
 from PyQt4 import QtCore, QtGui, QtSql
 from ui.zyjwin import ZyjWin
 
+@atexit.register
+def appExit():
+    pass
 
 if __name__ == '__main__':
     import sys

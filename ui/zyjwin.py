@@ -4,10 +4,11 @@
 Module implementing ZyjWin.
 """
 from PyQt4 import QtCore, QtGui, QtSql
-from PyQt4.QtGui import QMainWindow
-from PyQt4.QtCore import pyqtSignature, QString
+from PyQt4.QtGui import *
+from PyQt4.QtCore import *
 
 from Ui_zyj import Ui_ZyjWin
+from viewArticle import ViewArticle
 #from data.zyjdata import ZyjDataLogic
 
 class ZyjWin(QMainWindow, Ui_ZyjWin):
@@ -42,6 +43,9 @@ class ZyjWin(QMainWindow, Ui_ZyjWin):
         self.model.setHeaderData(2, QtCore.Qt.Horizontal, "Content")
         self.contentTableview.setModel(self.model)
         #self.contentTableview.show()
+        
+        #QtCore.QObject.connect(self.contentTableview, QtCore.SIGNAL(_fromUtf8("clicked(QModelIndex)")), self.contentTableview_clicked)
+        #self.connect(self.contentTableview, SIGNAL("clicked(QModelIndex)"), self.getCurrentIndex)
         
     @QtCore.pyqtSignature("") 
     def on_searchButton_clicked(self):
@@ -160,7 +164,28 @@ class ZyjWin(QMainWindow, Ui_ZyjWin):
         self.on_searchButton_clicked()
         pass
         
-    def on_cell(self):
-        pass
+
     def on_links(self):
         pass
+    
+    @pyqtSlot(QModelIndex)
+    def on_contentTableview_clicked(self, index):
+        '''for itm in index.data().toStringList():
+            print itm.toLocal8Bit()
+        print 'row: %d'%index.row()
+        print 'column %d'%index.column()
+        print type(index.model())'''
+        strlstRecord = QStringList()
+        for clm in [0, 1, 2]:
+            strlstRecord.append( index.model().record(index.row()).value(clm).toString())
+        
+        self.viewdialog = ViewArticle(strlstRecord[1], strlstRecord[2])
+        self.viewdialog.show()
+        
+    @pyqtSlot(QModelIndex)
+    def on_contentTableview_activated(self, index):
+        self.on_contentTableview_clicked(index)
+        pass
+        
+        
+        

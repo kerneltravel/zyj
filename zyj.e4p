@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.6.dtd">
 <!-- eric4 project file for project zyj -->
-<!-- Saved: 2013-02-01, 08:50:05 -->
+<!-- Saved: 2013-03-05, 23:28:37 -->
 <!-- Copyright (C) 2013 kjpioo2006@gmail.com, kjpioo2006@gmail.com -->
 <Project version="4.6">
   <Language>en</Language>
@@ -20,9 +20,12 @@
     <Source>data/connection.py</Source>
     <Source>data/zyjdata.py</Source>
     <Source>data/__init__.py</Source>
+    <Source>ui/Ui_viewarticle.py</Source>
+    <Source>ui/viewArticle.py</Source>
   </Sources>
   <Forms>
     <Form>ui/zyj.ui</Form>
+    <Form>ui/viewarticle.ui</Form>
   </Forms>
   <Translations>
   </Translations>
