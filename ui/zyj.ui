@@ -56,6 +56,12 @@
       <height>461</height>
      </rect>
     </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::CustomContextMenu</enum>
+    </property>
     <item>
      <property name="text">
       <string>理</string>
@@ -179,6 +185,11 @@
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_add_to_favouriate">
+   <property name="text">
+    <string>添加到收藏</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>keywdPlainTextEdit</tabstop>

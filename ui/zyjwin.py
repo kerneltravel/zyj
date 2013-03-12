@@ -47,6 +47,25 @@ class ZyjWin(QMainWindow, Ui_ZyjWin):
         #QtCore.QObject.connect(self.contentTableview, QtCore.SIGNAL(_fromUtf8("clicked(QModelIndex)")), self.contentTableview_clicked)
         #self.connect(self.contentTableview, SIGNAL("clicked(QModelIndex)"), self.getCurrentIndex)
         
+        self.createContextMenu()
+        
+    def createContextMenu(self):        
+        self.server_list_contextmenu = QtGui.QMenu(self)  
+        #self.server_list_contextmenu.addAction(self.action_move2left) 
+        #self.server_list_contextmenu.addSeparator()
+        self.server_list_contextmenu.addAction(self.action_add_to_favouriate)  
+        #self.server_list_contextmenu.addAction(self.action_edit_server)  
+        #self.server_list_contextmenu.addAction(self.action_copy_server)  
+        #self.server_list_contextmenu.addSeparator()
+        #self.server_list_contextmenu.addAction(self.action_delete_server) 
+
+    @pyqtSlot(QPoint)
+    def on_tagsListWidget_customContextMenuRequested(self, point):
+        """
+        Slot documentation goes here.
+        """
+        self.server_list_contextmenu.exec_(self.tagsListWidget.mapToGlobal(point))   
+        
     @QtCore.pyqtSignature("") 
     def on_searchButton_clicked(self):
         self.keywd = self.keywdPlainTextEdit.toPlainText()
