@@ -23,6 +23,7 @@ class ZyjWin(QMainWindow, Ui_ZyjWin):
         self.nPageCount = None
         self.nPageCur = 1
         self.nPagePer = 100
+        self.strOldKeyword = ""
         
         QMainWindow.__init__(self, parent)
         self.setupUi(self)
@@ -66,12 +67,22 @@ class ZyjWin(QMainWindow, Ui_ZyjWin):
         """
         self.server_list_contextmenu.exec_(self.tagsListWidget.mapToGlobal(point))   
         
+    
+    def getCurKeyword(self):
+        return self.keywdPlainTextEdit.toPlainText()
+    
     @QtCore.pyqtSignature("") 
     def on_searchButton_clicked(self):
-        self.keywd = self.keywdPlainTextEdit.toPlainText()
+        self.keywd = self.getCurKeyword()
         if self.keywd.isEmpty():
             return
         else:
+            '''关键词改变，则表示开始新查询。这时要重置当前页的值为1。
+            关键词和上次一样，不变，则继续搜索指定页内容。
+            '''
+            if self.strOldKeyword != self.keywd:
+                self.strOldKeyword = self.keywd
+                self.nPageCur = 1
             #self.model.doQuery(self.keywd)
             #qstringKeywd = QString(self.keywd)
             queryStrAll = "select docid,title,content from articles_vt where articles_vt match '%s' "%(self.keywd)
