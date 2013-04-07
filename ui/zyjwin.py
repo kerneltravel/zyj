@@ -209,7 +209,7 @@ class ZyjWin(QMainWindow, Ui_ZyjWin):
         for clm in [0, 1, 2]:
             strlstRecord.append( index.model().record(index.row()).value(clm).toString())
         
-        self.viewdialog = ViewArticle(strlstRecord[1], strlstRecord[2])
+        self.viewdialog = ViewArticle(self.keywd, strlstRecord[1], strlstRecord[2])
         self.viewdialog.show()
         
     @pyqtSlot(QModelIndex)
