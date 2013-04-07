@@ -20,7 +20,7 @@ class ZyjWin(QMainWindow, Ui_ZyjWin):
         Constructor
         """
         self.dataL = None
-        self.nPageCount = None
+        self.nPageCount = 1
         self.nPageCur = 1
         self.nPagePer = 100
         self.strOldKeyword = ""
@@ -178,13 +178,15 @@ class ZyjWin(QMainWindow, Ui_ZyjWin):
     
     @QtCore.pyqtSignature("")
     def on_preButton_clicked(self):
-        if self.nPageCur > 0:
+        if self.nPageCur > 1:
             self.nPageCur = self.nPageCur-1
             self.on_searchButton_clicked()
         pass
     
     @QtCore.pyqtSignature("")
     def on_nextButton_clicked(self):
+        if self.nPageCount == self.nPageCur:
+            return
         self.nPageCur = self.nPageCur+1
         self.on_searchButton_clicked()
     
