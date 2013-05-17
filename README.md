@@ -8,3 +8,6 @@ and get more common-sense of Chinese Traditional Medicine as daily skills.
 
 当前开发状态Current status：
 非常初期。Under heavily development.
+
+许可 LICENSE：
+General Public License GPL3
