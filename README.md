@@ -13,9 +13,10 @@ Everyone's Chinese Traditional Medicine manual, support the solve of small probl
 
 加入开发 how to join：
 
-发送邮件到 kjpioo2006 AT gmail dot com
+发送邮件到 kjpioo2006 AT gmail dot com。使用eric4作为IDE打开zyj.e4p文件，即可编辑源码或操作.ui文件、自动生成UI_* 文件。
 
-email to kjpioo2006 AT gmail dot com
+email to kjpioo2006 AT gmail dot com. We take eric4 as IDE to coding and manupilate ".ui" and "UI_" files automatically, 
+simply open the zyj.e4p file to open the zyj project.
 
 
 软件依赖 Dependences：
