@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\tmp\python\zyj_pyqt\ui\zyj.ui'
+# Form implementation generated from reading ui file 'D:\tmp\python\zyj.git\zyj\ui\zyj.ui'
 #
-# Created: Sat Mar 02 10:25:23 2013
+# Created: Fri May 17 20:20:44 2013
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -40,6 +40,8 @@ class Ui_ZyjWin(object):
         self.bookCombox.setObjectName(_fromUtf8("bookCombox"))
         self.tagsListWidget = QtGui.QListWidget(self.centralwidget)
         self.tagsListWidget.setGeometry(QtCore.QRect(525, 100, 161, 461))
+        self.tagsListWidget.setMouseTracking(False)
+        self.tagsListWidget.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.tagsListWidget.setObjectName(_fromUtf8("tagsListWidget"))
         item = QtGui.QListWidgetItem()
         self.tagsListWidget.addItem(item)
@@ -80,6 +82,8 @@ class Ui_ZyjWin(object):
         self.statusbar = QtGui.QStatusBar(ZyjWin)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         ZyjWin.setStatusBar(self.statusbar)
+        self.action_add_to_favouriate = QtGui.QAction(ZyjWin)
+        self.action_add_to_favouriate.setObjectName(_fromUtf8("action_add_to_favouriate"))
 
         self.retranslateUi(ZyjWin)
         QtCore.QMetaObject.connectSlotsByName(ZyjWin)
@@ -107,6 +111,7 @@ class Ui_ZyjWin(object):
         self.headButton.setText(_translate("ZyjWin", "Head", None))
         self.preButton.setText(_translate("ZyjWin", "Pre", None))
         self.nextButton.setText(_translate("ZyjWin", "Next", None))
+        self.action_add_to_favouriate.setText(_translate("ZyjWin", "添加到收藏", None))
 
 
 if __name__ == "__main__":
