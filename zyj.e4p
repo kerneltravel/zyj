@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Project SYSTEM "Project-4.6.dtd">
+<!-- eric4 project file for project zyj -->
+<!-- Saved: 2013-03-05, 23:28:37 -->
+<!-- Copyright (C) 2013 kjpioo2006@gmail.com, kjpioo2006@gmail.com -->
+<Project version="4.6">
+  <Language>en</Language>
+  <ProgLanguage mixed="0">Python</ProgLanguage>
+  <ProjectType>Qt4</ProjectType>
+  <Description>中医典籍查询</Description>
+  <Version>0.1</Version>
+  <Author>kjpioo2006@gmail.com</Author>
+  <Email>kjpioo2006@gmail.com</Email>
+  <Sources>
+    <Source>__init__.py</Source>
+    <Source>main.py</Source>
+    <Source>ui/Ui_zyj.py</Source>
+    <Source>ui/zyjwin.py</Source>
+    <Source>ui/__init__.py</Source>
+    <Source>data/connection.py</Source>
+    <Source>data/zyjdata.py</Source>
+    <Source>data/__init__.py</Source>
+    <Source>ui/Ui_viewarticle.py</Source>
+    <Source>ui/viewArticle.py</Source>
+  </Sources>
+  <Forms>
+    <Form>ui/zyj.ui</Form>
+    <Form>ui/viewarticle.ui</Form>
+  </Forms>
+  <Translations>
+  </Translations>
+  <Resources>
+  </Resources>
+  <Interfaces>
+  </Interfaces>
+  <Others>
+  </Others>
+  <Vcs>
+    <VcsType>None</VcsType>
+  </Vcs>
+  <FiletypeAssociations>
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.qm" type="TRANSLATIONS" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.pyw" type="SOURCES" />
+    <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
+    <FiletypeAssociation pattern="*.ts" type="TRANSLATIONS" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
+    <FiletypeAssociation pattern="*.qrc" type="RESOURCES" />
+  </FiletypeAssociations>
+</Project>
