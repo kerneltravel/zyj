@@ -1,1 +1,1 @@
-¹Ø¼ü×Ö²éÑ¯Ê¾Àı(ĞèÒªsqlite3Êı¾İ¿âÖ§³ÖicuºÍftsÌØĞÔ):select docid,snippet(articles_vt) from articles_vt where articles_vt match '¸ĞÃ° AND Éú½ª' ;×¢Òâ£º¶Ôfts±í½øĞĞ²éÕÒÊ±£¬and²Ù×÷·û±ØĞë´óĞ´AND£¬Ğ¡Ğ´ÎŞĞ§¡£ OR Ò²Ò»Ñù¡£
+ï»¿å…³é”®å­—æŸ¥è¯¢ç¤ºä¾‹(éœ€è¦sqlite3æ•°æ®åº“æ”¯æŒicuå’Œftsç‰¹æ€§):select docid,snippet(articles_vt) from articles_vt where articles_vt match 'æ„Ÿå†’ AND ç”Ÿå§œ' ;æ³¨æ„ï¼šå¯¹ftsè¡¨è¿›è¡ŒæŸ¥æ‰¾æ—¶ï¼Œandæ“ä½œç¬¦å¿…é¡»å¤§å†™ANDï¼Œå°å†™æ— æ•ˆã€‚ OR ä¹Ÿä¸€æ ·ã€‚

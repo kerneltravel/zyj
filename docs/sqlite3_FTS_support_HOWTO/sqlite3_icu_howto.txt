@@ -1,17 +1,17 @@
-sqlite3 icu howto
+ï»¿sqlite3 icu howto
 
-ÔµÆğ£ºsqlite3Ö§³ÖÈ«ÎÄËÑË÷£¬ĞèÒªfts3/4Ä£¿é(http://www.sqlite.org/fts3.html)ÆôÓÃ¡£
-¸ÃÄ£¿éµÄ·Ö´Ê·½Ê½Ä¬ÈÏÖ§³Öporter,simpleµÈ£¬simpleÊÇ»ù±¾µÄ¡£ËûÃÇÇø±ğ¾ßÌå¿´ÕâÀï(
-http://www.sqlite.org/fts3.html#tokenizer)¡£icu¿ÉÒÔ×÷Îªsqlite3µÄextension·½Ê½ÆôÓÃ¡£
+ç¼˜èµ·ï¼šsqlite3æ”¯æŒå…¨æ–‡æœç´¢ï¼Œéœ€è¦fts3/4æ¨¡å—(http://www.sqlite.org/fts3.html)å¯ç”¨ã€‚
+è¯¥æ¨¡å—çš„åˆ†è¯æ–¹å¼é»˜è®¤æ”¯æŒporter,simpleç­‰ï¼Œsimpleæ˜¯åŸºæœ¬çš„ã€‚ä»–ä»¬åŒºåˆ«å…·ä½“çœ‹è¿™é‡Œ(
+http://www.sqlite.org/fts3.html#tokenizer)ã€‚icuå¯ä»¥ä½œä¸ºsqlite3çš„extensionæ–¹å¼å¯ç”¨ã€‚
 
-1 icu £¨http://site.icu-project.org/£©
+1 icu ï¼ˆhttp://site.icu-project.org/ï¼‰
 /*
 **compile-howto
 */
 wget http://www.ictclas.org/down/50/ICTCLAS50_Windows_32_C.rar
 unrar ICTCLAS50_Windows_32_C.rar
-ÓÃvs´ò¿ª d:\tmp\qt\zyj\zyj\icu\icu\source\allinone\allinone.sln ½øĞĞÄ¬ÈÏ±àÒë¡£ÔÚicu
-Ä¿Â¼ÄÚµÃµ½ bin/  lib/ include/
+ç”¨vsæ‰“å¼€ d:\tmp\qt\zyj\zyj\icu\icu\source\allinone\allinone.sln è¿›è¡Œé»˜è®¤ç¼–è¯‘ã€‚åœ¨icu
+ç›®å½•å†…å¾—åˆ° bin/  lib/ include/
 dir bin/
 derb.exe      genrb.exe     icuio50d.dll  icupkg.exe	  icuuc50d.dll
 genbrk.exe    gensprep.exe  icuio50d.ilk  icutest50.dll   icuuc50d.ilk
@@ -78,30 +78,30 @@ idna.h              tmunit.h             umsg.h
 listformatter.h     tmutamt.h            unifilt.h
 
 
-±¸×¢£º
-1 ´ıÓÅ»¯¡£file:///D:/tmp/qt/zyj/zyj/icu/icu/readme.html  Hardcode the default charset to UTF-8
-2 vsÄ¬ÈÏ±àÒëÊ±£¬Ñ¡ÏîÖĞ¿ÉÒÔÌí¼Ó-Os ÕâÑù¶ÔreleaseÊÇ½øÒ»²½µÄÓÅ»¯
-3 ÕâÀïÈı¸öÄ¿Â¼¶¼ÊÇÒÔºó±àÒësqlite icuÖ§³ÖËùĞèÖ¸¶¨µÄÂ·¾¶¡£
+å¤‡æ³¨ï¼š
+1 å¾…ä¼˜åŒ–ã€‚file:///D:/tmp/qt/zyj/zyj/icu/icu/readme.html  Hardcode the default charset to UTF-8
+2 vsé»˜è®¤ç¼–è¯‘æ—¶ï¼Œé€‰é¡¹ä¸­å¯ä»¥æ·»åŠ -Os è¿™æ ·å¯¹releaseæ˜¯è¿›ä¸€æ­¥çš„ä¼˜åŒ–
+3 è¿™é‡Œä¸‰ä¸ªç›®å½•éƒ½æ˜¯ä»¥åç¼–è¯‘sqlite icuæ”¯æŒæ‰€éœ€æŒ‡å®šçš„è·¯å¾„ã€‚
 
-±àÒësqlite3£¨FTS3 FTS4 ICU enabled£©
+ç¼–è¯‘sqlite3ï¼ˆFTS3 FTS4 ICU enabledï¼‰
 1 get source 
 wget http://www.sqlite.org/sqlite-src-3071501.zip
 unzip qlite-src-3071501.zip
 cd sqlite-src-3071501
 
 2 before compile
-£¨1£©¸ù¾İ sqlite-srcµÄ README
+ï¼ˆ1ï¼‰æ ¹æ® sqlite-srcçš„ README
 	SQLite does not require TCL to run, but a TCL installation is required
 by the makefiles.  SQLite contains a lot of generated code and TCL is
 used to do much of that code generation.  The makefile also requires
 AWK.
-	ĞèÒªÔÚwindowsÏÂ¿ÉÒÔ°²×°awkºÍtcl»·¾³£º
-	£¨awk£©http://jaist.dl.sourceforge.net/project/mingw/Installer/mingw-get-inst/mingw-get-inst-20120426/mingw-get-inst-20120426.exe
-	£¨tcl£©http://nchc.dl.sourceforge.net/project/tcl/Tcl/8.5.13/tcl8513-src.zip
-£¨1.1£© tcl±àÒë
+	éœ€è¦åœ¨windowsä¸‹å¯ä»¥å®‰è£…awkå’Œtclç¯å¢ƒï¼š
+	ï¼ˆawkï¼‰http://jaist.dl.sourceforge.net/project/mingw/Installer/mingw-get-inst/mingw-get-inst-20120426/mingw-get-inst-20120426.exe
+	ï¼ˆtclï¼‰http://nchc.dl.sourceforge.net/project/tcl/Tcl/8.5.13/tcl8513-src.zip
+ï¼ˆ1.1ï¼‰ tclç¼–è¯‘
 	tcl8.5.13\win>nmake -f makefile.vc
-	tcl8.5.13\win>nmake -f makefile.vc install  £¨ÔòÄ¬ÈÏ°²×°µ½C:/program files/TCL/£©
-£¨2£© ĞŞ¸Ä sqlite-src-3071501\ ÔÚms winÏÂµÄmakefile.msc ²ÎÊı£¬¿ªÆôICU
+	tcl8.5.13\win>nmake -f makefile.vc install  ï¼ˆåˆ™é»˜è®¤å®‰è£…åˆ°C:/program files/TCL/ï¼‰
+ï¼ˆ2ï¼‰ ä¿®æ”¹ sqlite-src-3071501\ åœ¨ms winä¸‹çš„makefile.msc å‚æ•°ï¼Œå¼€å¯ICU
 =============makefile changed info start============================================
 diff --git "a/D:\\path\\to\\sqlite-src-3071501\\Makefile.msc" "b/D:\path\\to\\ICU-enabled\\Makefile.msc"
 index 3685ba3..d12e5d0 100644
@@ -176,15 +176,15 @@ index 3685ba3..d12e5d0 100644
  OPT_FEATURE_FLAGS = $(OPT_FEATURE_FLAGS) -DSQLITE_ENABLE_COLUMN_METADATA=1
  # END standard options
 ==============makefile change end==========================================================
-ÕâÀï¹Ø¼üĞŞ¸ÄÊÇ£º1 USE_ICUÊ¹ÄÜ 2 OPT_FEATURE_FLAGSÔö¼Ó ENABLE*FTS3/4Ñ¡Ïî
-ÕâÀïÆäËûĞŞ¸ÄÈçtclÄ¿Â¼¡¢ICU LIBÄ¿Â¼¿ÉÒÔ¸ù¾İ¾ßÌå»·¾³Éè¶¨¡£
+è¿™é‡Œå…³é”®ä¿®æ”¹æ˜¯ï¼š1 USE_ICUä½¿èƒ½ 2 OPT_FEATURE_FLAGSå¢åŠ  ENABLE*FTS3/4é€‰é¡¹
+è¿™é‡Œå…¶ä»–ä¿®æ”¹å¦‚tclç›®å½•ã€ICU LIBç›®å½•å¯ä»¥æ ¹æ®å…·ä½“ç¯å¢ƒè®¾å®šã€‚
 
-±¸×¢(2 before compile)£º
-1 ·¢²¼Ê±ĞèÒª½« makefile.mscµÄDEBUGÑ¡ÏîÉèÎª0
+å¤‡æ³¨(2 before compile)ï¼š
+1 å‘å¸ƒæ—¶éœ€è¦å°† makefile.mscçš„DEBUGé€‰é¡¹è®¾ä¸º0
 
 3 compile sqlite3(icu enabled)
 sqlite-src-3071501>nmake -f Makefile.msc
-µÃµ½£º
+å¾—åˆ°ï¼š
 sqlite3.h
 sqlite3.c
 sqlite3.lib
@@ -193,26 +193,26 @@ sqlite3.exe
 sqlite3.exp
 sqlite3rc.h
 libsqlite3.lib
-ÓÉÓÚ¾²Ì¬Á´½ÓÁËicuµÄicuuc.libºÍicuin.lib£¬ËùÒÔsqlite3.dllÒÑ¾­´øÓĞÒÔÉÏÁ½¸ö¾²Ì¬¿âÌá¹©µÄICU¹¦ÄÜ¡£
+ç”±äºé™æ€é“¾æ¥äº†icuçš„icuuc.libå’Œicuin.libï¼Œæ‰€ä»¥sqlite3.dllå·²ç»å¸¦æœ‰ä»¥ä¸Šä¸¤ä¸ªé™æ€åº“æä¾›çš„ICUåŠŸèƒ½ã€‚
 
-4 ²âÊÔsqlite3 ICU support
-(1)ÓÃsqlite3±àÒëµÃµ½µÄsqlite3.exeÖ´ĞĞ²âÊÔ£º
+4 æµ‹è¯•sqlite3 ICU support
+(1)ç”¨sqlite3ç¼–è¯‘å¾—åˆ°çš„sqlite3.exeæ‰§è¡Œæµ‹è¯•ï¼š
 ...
 CREATE VIRTUAL TABLE names_t USING fts3(a, b, tokenize=icu zh_CN);
-INSERT INTO names_t(a,b) VALUES('¼ò½é1','ÎÒÃÇµÄÖĞ¹ú£¬ÓĞ×Å»Ô»ÍµÄ ³¤¾Ã ÀúÊ·');
-select a,b from names_t where b match '³¤¾Ã';
-select a,b from names_t where b match 'ÖĞ¹ú';
-SELECT snippet(names_t) FROM names WHERE names MATCH 'ÖĞ¹ú';
-(2)ÏîÄ¿ÖĞ¼¯³Ésqlite3 icu¹¦ÄÜ
-¿ÉÒÔ²Î¿¼ sqlitebrowser £¨http://sourceforge.net/projects/sqlitebrowser/£©¿ªÔ´Èí¼ş£¬Ê×ÏÈÓÃÆä×Ô´ø£¨»òÏµÍ³Ä¬ÈÏ£©µÄ
-Ìæ»»µôÆä×Ô´øµÄsqlitebrowser\trunk\sqlitebrowser\sqlitebrowser\debug\sqlite3.dll£¬Ö´ĞĞ3ÖĞµÄsql icu²éÑ¯,
-¶¼ÌáÊ¾¡°module fts3/fts4²»Ö§³Ö¡±»òÕß¡°Unknown Tokenizer: icu¡±¡£
-ÔÙÓÃ×Ô¼º±àÒëµÄÓĞicuÖ§³ÖµÄÌæ»»µôsqlitebrowser\trunk\sqlitebrowser\sqlitebrowser\debug\sqlite3.dll ÎÄ¼ş£¬
-ÔÙÖ´ĞĞÒÔÉÏ²âÊÔ¡£sqlitebrowserÏîÄ¿ÒÑ¾­×Ô´øÁËsqlite_source/sqlite3.cµÈÔ´ÎÄ¼ş£¬µ«ÎÒĞèÒªÊ¹ÓÃµÄ×Ô¼º±àÒëµÄ
-sqlite3.dllËùÒÔÔÚsqlitebrowser.proÀïÃæÈ¥µôsqlite_source/sqlite3.c µÄ°üº¬¡£
-======================sqlitebrowser.proĞŞ¸Ä================================
---- C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/sqlitebrowser.pro-revBASE.svn000.tmp.pro	ĞÇÆÚ¶ş Ê®¶şÔÂ 29 08:58:10 2009
-+++ D:/tmp/qt/zyj/zyj/icu/sqlitebrowser/trunk/sqlitebrowser/sqlitebrowser/sqlitebrowser.pro	ĞÇÆÚ¶ş Ê®¶şÔÂ 25 19:49:03 2012
+INSERT INTO names_t(a,b) VALUES('ç®€ä»‹1','æˆ‘ä»¬çš„ä¸­å›½ï¼Œæœ‰ç€è¾‰ç…Œçš„ é•¿ä¹… å†å²');
+select a,b from names_t where b match 'é•¿ä¹…';
+select a,b from names_t where b match 'ä¸­å›½';
+SELECT snippet(names_t) FROM names WHERE names MATCH 'ä¸­å›½';
+(2)é¡¹ç›®ä¸­é›†æˆsqlite3 icuåŠŸèƒ½
+å¯ä»¥å‚è€ƒ sqlitebrowser ï¼ˆhttp://sourceforge.net/projects/sqlitebrowser/ï¼‰å¼€æºè½¯ä»¶ï¼Œé¦–å…ˆç”¨å…¶è‡ªå¸¦ï¼ˆæˆ–ç³»ç»Ÿé»˜è®¤ï¼‰çš„
+æ›¿æ¢æ‰å…¶è‡ªå¸¦çš„sqlitebrowser\trunk\sqlitebrowser\sqlitebrowser\debug\sqlite3.dllï¼Œæ‰§è¡Œ3ä¸­çš„sql icuæŸ¥è¯¢,
+éƒ½æç¤ºâ€œmodule fts3/fts4ä¸æ”¯æŒâ€æˆ–è€…â€œUnknown Tokenizer: icuâ€ã€‚
+å†ç”¨è‡ªå·±ç¼–è¯‘çš„æœ‰icuæ”¯æŒçš„æ›¿æ¢æ‰sqlitebrowser\trunk\sqlitebrowser\sqlitebrowser\debug\sqlite3.dll æ–‡ä»¶ï¼Œ
+å†æ‰§è¡Œä»¥ä¸Šæµ‹è¯•ã€‚sqlitebrowseré¡¹ç›®å·²ç»è‡ªå¸¦äº†sqlite_source/sqlite3.cç­‰æºæ–‡ä»¶ï¼Œä½†æˆ‘éœ€è¦ä½¿ç”¨çš„è‡ªå·±ç¼–è¯‘çš„
+sqlite3.dllæ‰€ä»¥åœ¨sqlitebrowser.proé‡Œé¢å»æ‰sqlite_source/sqlite3.c çš„åŒ…å«ã€‚
+======================sqlitebrowser.proä¿®æ”¹================================
+--- C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/sqlitebrowser.pro-revBASE.svn000.tmp.pro	æ˜ŸæœŸäºŒ åäºŒæœˆ 29 08:58:10 2009
++++ D:/tmp/qt/zyj/zyj/icu/sqlitebrowser/trunk/sqlitebrowser/sqlitebrowser/sqlitebrowser.pro	æ˜ŸæœŸäºŒ åäºŒæœˆ 25 19:49:03 2012
 @@ -31,7 +31,7 @@
      browsermain.cpp \
      sqlitedb.cpp \
@@ -227,24 +227,24 @@ sqlite3.dllËùÒÔÔÚsqlitebrowser.proÀïÃæÈ¥µôsqlite_source/sqlite3.c µÄ°üº¬¡£
          ppc
  }
 +#win32:INCLUDEPATH += "d:/tmp/qt/zyj/zyj/icu/icu/include/"
-+#win32:LIBS += -Ld:/tmp/qt/zyj/zyj/icu/icu/lib/ -licuuc -licudt  #ÕâÀï²»ĞèÒª¾²Ì¬Á´½Óicu¿âÁË¡£¡°#¡±±íÊ¾×¢ÊÍµô
++#win32:LIBS += -Ld:/tmp/qt/zyj/zyj/icu/icu/lib/ -licuuc -licudt  #è¿™é‡Œä¸éœ€è¦é™æ€é“¾æ¥icuåº“äº†ã€‚â€œ#â€è¡¨ç¤ºæ³¨é‡Šæ‰
 +win32:LIBS += -LD:/path/to/sqlite-src-3071501/ -lsqlite3
 \ No newline at end of file
 ===========================
 
-±¸×¢£¨4²âÊÔ£©
-£¨1£©
+å¤‡æ³¨ï¼ˆ4æµ‹è¯•ï¼‰
+ï¼ˆ1ï¼‰
 
 
-5 ±¸×¢
-£¨1£©icu¹¦ÄÜ¿ÉÒÔºÍchromeä¯ÀÀÆ÷×îĞÂ°æµÄ·Ö´ÊĞ§¹û¶Ô±È¡£ËüÄ¬ÈÏ¾ÍÊÇÓÃicu¡£
-¡¶¹È¸èä¯ÀÀÆ÷ÀïÅ£±ÆµÄÖĞÎÄ·Ö´Ê¡·( http://initiative.yo2.cn/archives/640309 )
-£¨2£©sqlite3±àÒë£¬¹Ù·½ÍÆ¼öÓÃamalgamation°ü£¨http://www.sqlite.org/sqlite-amalgamation-3071501.zip£©
-¾­¹ıÊµ¼ù£¬ÎÒÈÏÎªsqlite3-src Ñ¹Ëõ°ü¸üÊÊºÏÔÚÈí¼ş³õÆÚºÍ²âÊÔ½×¶ÎÓÃ£¬ÒòÎªsqlite3-src°üÌá¹©ÁË¿ÉÅäÖÃ
-µÄmakefile.mscÎÄ¼ş£¬¶øamalgamation°üÖ»Ìá¹©ÁË4¸öÔ´ÎÄ¼ş£¬Ê¹µÃ³öÏÖÎÊÌâºó·Ç³£²»Ö±¹Û¡£±ÈÈçhttps://github.com/mapbox/carmen/issues/1
-ÕâÀïµÄ±àÒë·½Ê½ÊÇ£º
+5 å¤‡æ³¨
+ï¼ˆ1ï¼‰icuåŠŸèƒ½å¯ä»¥å’Œchromeæµè§ˆå™¨æœ€æ–°ç‰ˆçš„åˆ†è¯æ•ˆæœå¯¹æ¯”ã€‚å®ƒé»˜è®¤å°±æ˜¯ç”¨icuã€‚
+ã€Šè°·æ­Œæµè§ˆå™¨é‡Œç‰›é€¼çš„ä¸­æ–‡åˆ†è¯ã€‹( http://initiative.yo2.cn/archives/640309 )
+ï¼ˆ2ï¼‰sqlite3ç¼–è¯‘ï¼Œå®˜æ–¹æ¨èç”¨amalgamationåŒ…ï¼ˆhttp://www.sqlite.org/sqlite-amalgamation-3071501.zipï¼‰
+ç»è¿‡å®è·µï¼Œæˆ‘è®¤ä¸ºsqlite3-src å‹ç¼©åŒ…æ›´é€‚åˆåœ¨è½¯ä»¶åˆæœŸå’Œæµ‹è¯•é˜¶æ®µç”¨ï¼Œå› ä¸ºsqlite3-srcåŒ…æä¾›äº†å¯é…ç½®
+çš„makefile.mscæ–‡ä»¶ï¼Œè€ŒamalgamationåŒ…åªæä¾›äº†4ä¸ªæºæ–‡ä»¶ï¼Œä½¿å¾—å‡ºç°é—®é¢˜åéå¸¸ä¸ç›´è§‚ã€‚æ¯”å¦‚https://github.com/mapbox/carmen/issues/1
+è¿™é‡Œçš„ç¼–è¯‘æ–¹å¼æ˜¯ï¼š
 ./configure CPPFLAGS="-DSQLITE_ENABLE_ICU `icu-config --cppflags`" LDFLAGS="`icu-config --ldflags`"
 make & make install
-ÎÒ»¹²»Àí½âÆäÖĞ ¡°`icu-config --cppflags`¡±ÔÚmingw»·¾³ÏÂÔõÃ´×öµ½¡£
-£¨3£©icuµÄwindows±àÒë£¬¸ü¶àµÄ¿ÉÒÔ²Î¿¼icu/readme.html#HowToBuildWindows
-£¨4£©sqlite3µÄ±àÒë£¬¸ü¶àµÄ¿ÉÒÔ²Î¿¼http://www.sqlite.org/cvstrac/wiki?p=HowToCompile
+æˆ‘è¿˜ä¸ç†è§£å…¶ä¸­ â€œ`icu-config --cppflags`â€åœ¨mingwç¯å¢ƒä¸‹æ€ä¹ˆåšåˆ°ã€‚
+ï¼ˆ3ï¼‰icuçš„windowsç¼–è¯‘ï¼Œæ›´å¤šçš„å¯ä»¥å‚è€ƒicu/readme.html#HowToBuildWindows
+ï¼ˆ4ï¼‰sqlite3çš„ç¼–è¯‘ï¼Œæ›´å¤šçš„å¯ä»¥å‚è€ƒhttp://www.sqlite.org/cvstrac/wiki?p=HowToCompile

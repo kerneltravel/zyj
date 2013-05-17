@@ -1,32 +1,32 @@
-python sqlite3 icu-support howto
+ï»¿python sqlite3 icu-support howto
 
-ÔµÆğ£ºsqlite3Ö§³ÖÈ«ÎÄËÑË÷£¬ĞèÒªfts3/4Ä£¿é(http://www.sqlite.org/fts3.html)ÆôÓÃ¡£
-¸ÃÄ£¿éµÄ·Ö´Ê·½Ê½Ä¬ÈÏÖ§³Öporter,simpleµÈ£¬simpleÊÇ»ù±¾µÄ¡£ËûÃÇÇø±ğ¾ßÌå¿´ÕâÀï(
-http://www.sqlite.org/fts3.html#tokenizer)¡£icu¿ÉÒÔ×÷Îªsqlite3µÄextension·½Ê½ÆôÓÃ¡£
+ç¼˜èµ·ï¼šsqlite3æ”¯æŒå…¨æ–‡æœç´¢ï¼Œéœ€è¦fts3/4æ¨¡å—(http://www.sqlite.org/fts3.html)å¯ç”¨ã€‚
+è¯¥æ¨¡å—çš„åˆ†è¯æ–¹å¼é»˜è®¤æ”¯æŒporter,simpleç­‰ï¼Œsimpleæ˜¯åŸºæœ¬çš„ã€‚ä»–ä»¬åŒºåˆ«å…·ä½“çœ‹è¿™é‡Œ(
+http://www.sqlite.org/fts3.html#tokenizer)ã€‚icuå¯ä»¥ä½œä¸ºsqlite3çš„extensionæ–¹å¼å¯ç”¨ã€‚
 
-apswÊÇsqlite3µÄpython·â×°£º
+apswæ˜¯sqlite3çš„pythonå°è£…ï¼š
 APSW is a Python wrapper for the SQLite embedded relational database engine. In contrast to other wrappers such as pysqlite it focuses on being a minimal layer over SQLite attempting just to translate the complete SQLite API into Python. The documentation has a section on the differences between APSW and pysqlite. APSW supports CPython 2.3 onwards and CPython 3.1 onwards.
 
-1 icu £¨http://site.icu-project.org/£©
-¿ÉÒÔÓÃc++ÄÇÆª²úÉúµÄicu
+1 icu ï¼ˆhttp://site.icu-project.org/ï¼‰
+å¯ä»¥ç”¨c++é‚£ç¯‡äº§ç”Ÿçš„icu
 
-2 °²×°mingw for windows (win32)
+2 å®‰è£…mingw for windows (win32)
 2.1) mingw-get-inst-20120426.exe (662.7 kB) 
-ÒÔºóÔÚÕâ¸ö»·¾³ÖĞ±àÒëapsw¡£ ÒòÎªÈç¹ûÓÃvc++±àÒëapsw»áÌáÊ¾ ÕÒ²»µ½ vcvarsall.bat£¬¶øÇÒÃ»ÓĞ½â¾ö°ì·¨£¬ÔÙ¼ÓÉÏvc±àÒëÆ÷¶ÔÓÚ
-amalgamation °æµ¥Ô´ÂëÎÄ¼şµÄsqlite3£¬´úÂë³¤¶È³¬¹ıÁË×î´óÏŞ¶È£¬Ò²²»ÄÜ±àÒë³É¹¦¡£¶ømingwÃ»ÓĞÕâ¸öÎÊÌâ¡£
-2.2) µ½http://code.google.com/p/apsw/downloads/list ÏÂÔØ×îĞÂ°æapswÔ´Âë£¨2013.1.10Îª apsw-3.7.15.1-r1.zip
-ÎÒ pythonÊÇ2.7.3°æ±¾£¬ËùÒÔÏÂÔØÕâ¸ö2.7µÄ£©
+ä»¥ååœ¨è¿™ä¸ªç¯å¢ƒä¸­ç¼–è¯‘apswã€‚ å› ä¸ºå¦‚æœç”¨vc++ç¼–è¯‘apswä¼šæç¤º æ‰¾ä¸åˆ° vcvarsall.batï¼Œè€Œä¸”æ²¡æœ‰è§£å†³åŠæ³•ï¼Œå†åŠ ä¸Švcç¼–è¯‘å™¨å¯¹äº
+amalgamation ç‰ˆå•æºç æ–‡ä»¶çš„sqlite3ï¼Œä»£ç é•¿åº¦è¶…è¿‡äº†æœ€å¤§é™åº¦ï¼Œä¹Ÿä¸èƒ½ç¼–è¯‘æˆåŠŸã€‚è€Œmingwæ²¡æœ‰è¿™ä¸ªé—®é¢˜ã€‚
+2.2) åˆ°http://code.google.com/p/apsw/downloads/list ä¸‹è½½æœ€æ–°ç‰ˆapswæºç ï¼ˆ2013.1.10ä¸º apsw-3.7.15.1-r1.zip
+æˆ‘ pythonæ˜¯2.7.3ç‰ˆæœ¬ï¼Œæ‰€ä»¥ä¸‹è½½è¿™ä¸ª2.7çš„ï¼‰
 
 3 compile apsw(icu enabled)
-apsw±àÒëÊ±»á×Ô¶¯ÏÂÔØ×îĞÂ°æsqlite3 amalgamation Ô´Âë°ü¡£ÒÔ¹©Éú³Éapsw.pyd¶¯Ì¬¿â¡£
-3.1 ²»×öÆäËûĞŞ¸Ä£¬³¢ÊÔ±àÒë£ºpython setup.py fetch --missing-checksum-ok --all build --enable-all-extensions --compile=mingw32 install test
-3.2 ÒÔÉÏ±àÒëÖĞ³öÏÖµÄ-mno-cygwin ´íÎó£¨Ö»Õë¶Ômingw »òÕßcywinÃüÁîĞĞ£©£¬½â¾ö·½·¨¿ÉÒÔ²Î¿¼  http://stackoverflow.com/questions/8531983/easy-install-u-cython-fails-complaining-about-vcvarsall-bat-and-mno-cygwin
-3.3 ÒÔÉÏ±àÒëÖĞ¿ÉÒÔ¿´µ½ gcc.exe ĞĞµÄ-D¸÷Ïîºê¶¨ÒåÖĞÃ»ÓĞ SQLITE_ENABLE_ICU£¬´Ósetup.pyÖĞ¿ÉÒÔ¿´µ½ÓÉÓÚwindows Æ½Ì¨Ã»ÓĞicu-config½Å±¾£¬Ö»ÓĞ
-linux/mac»·¾³²ÅÓĞ£¬ËùÒÔsetup.pyÔÚwindowsÏÂÄ¬ÈÏ²»°²×°icu¡£
-3.4 ÊÖ´ÓĞŞ¸Äsetup.pyÎÄ¼ş¡£ÏÂÃæÊÇÔ­setup.pyºÍĞŞ¸ÄºóµÄsetup.pyÎÄ¼ş£¨È¡¸ö±ğÃûmodified_setup.py£©µÄdiff½á¹û£º
+apswç¼–è¯‘æ—¶ä¼šè‡ªåŠ¨ä¸‹è½½æœ€æ–°ç‰ˆsqlite3 amalgamation æºç åŒ…ã€‚ä»¥ä¾›ç”Ÿæˆapsw.pydåŠ¨æ€åº“ã€‚
+3.1 ä¸åšå…¶ä»–ä¿®æ”¹ï¼Œå°è¯•ç¼–è¯‘ï¼špython setup.py fetch --missing-checksum-ok --all build --enable-all-extensions --compile=mingw32 install test
+3.2 ä»¥ä¸Šç¼–è¯‘ä¸­å‡ºç°çš„-mno-cygwin é”™è¯¯ï¼ˆåªé’ˆå¯¹mingw æˆ–è€…cywinå‘½ä»¤è¡Œï¼‰ï¼Œè§£å†³æ–¹æ³•å¯ä»¥å‚è€ƒ  http://stackoverflow.com/questions/8531983/easy-install-u-cython-fails-complaining-about-vcvarsall-bat-and-mno-cygwin
+3.3 ä»¥ä¸Šç¼–è¯‘ä¸­å¯ä»¥çœ‹åˆ° gcc.exe è¡Œçš„-Då„é¡¹å®å®šä¹‰ä¸­æ²¡æœ‰ SQLITE_ENABLE_ICUï¼Œä»setup.pyä¸­å¯ä»¥çœ‹åˆ°ç”±äºwindows å¹³å°æ²¡æœ‰icu-configè„šæœ¬ï¼Œåªæœ‰
+linux/macç¯å¢ƒæ‰æœ‰ï¼Œæ‰€ä»¥setup.pyåœ¨windowsä¸‹é»˜è®¤ä¸å®‰è£…icuã€‚
+3.4 æ‰‹ä»ä¿®æ”¹setup.pyæ–‡ä»¶ã€‚ä¸‹é¢æ˜¯åŸsetup.pyå’Œä¿®æ”¹åçš„setup.pyæ–‡ä»¶ï¼ˆå–ä¸ªåˆ«åmodified_setup.pyï¼‰çš„diffç»“æœï¼š
 =========================================================================================================
---- D:/apsw-3.7.15.1-r1/apsw-3.7.15.1-r1/setup.py	ĞÇÆÚÁù Ê®¶şÔÂ 22 10:32:00 2012
-+++ D:/apsw-3.7.15.1-r1/apsw-3.7.15.1-r1/modified_setup.py	ĞÇÆÚËÄ Ò»ÔÂ 10 17:34:31 2013
+--- D:/apsw-3.7.15.1-r1/apsw-3.7.15.1-r1/setup.py	æ˜ŸæœŸå…­ åäºŒæœˆ 22 10:32:00 2012
++++ D:/apsw-3.7.15.1-r1/apsw-3.7.15.1-r1/modified_setup.py	æ˜ŸæœŸå›› ä¸€æœˆ 10 17:34:31 2013
 @@ -198,7 +198,7 @@
          # work out the version
          if self.version is None:
@@ -83,28 +83,28 @@ linux/mac»·¾³²ÅÓĞ£¬ËùÒÔsetup.pyÔÚwindowsÏÂÄ¬ÈÏ²»°²×°icu¡£
          if addicuinclib:
              foundicu=False
 =========================================================================================================
-ÆäÖĞ ext.libraries.append("icudt") Õâ¸ö¿ÉÒÔÈ¥µô¡£icudt.libÎÄ¼ş²»ÊÇicuÖĞÎÄ·Ö´Ê±ØĞë¡£
-ÆäÖĞ ext.define_macros.append(('SQLITE_ENABLE_ICU','1')) Ò²¿ÉÒÔÈ¥µô¡£ÒòÎªÖ®Ç°µÄĞŞ¸ÄÒÑ¾­°üº¬icu extension£¬»áÉú³ÉÕâ¸öºê¶¨Òå¡£
-3.5 ÖØĞÂÔËĞĞ3.1ÖĞÃüÁî£¬³É¹¦µÃµ½ËùĞèapsw.pyd¶¯Ì¬¿â£¬ÇÒ×Ô¶¯°²×°µ½c:/python/lib/site-packages/ÏÂ¡£
+å…¶ä¸­ ext.libraries.append("icudt") è¿™ä¸ªå¯ä»¥å»æ‰ã€‚icudt.libæ–‡ä»¶ä¸æ˜¯icuä¸­æ–‡åˆ†è¯å¿…é¡»ã€‚
+å…¶ä¸­ ext.define_macros.append(('SQLITE_ENABLE_ICU','1')) ä¹Ÿå¯ä»¥å»æ‰ã€‚å› ä¸ºä¹‹å‰çš„ä¿®æ”¹å·²ç»åŒ…å«icu extensionï¼Œä¼šç”Ÿæˆè¿™ä¸ªå®å®šä¹‰ã€‚
+3.5 é‡æ–°è¿è¡Œ3.1ä¸­å‘½ä»¤ï¼ŒæˆåŠŸå¾—åˆ°æ‰€éœ€apsw.pydåŠ¨æ€åº“ï¼Œä¸”è‡ªåŠ¨å®‰è£…åˆ°c:/python/lib/site-packages/ä¸‹ã€‚
 
-3.6 ÓÉÓÚ¾²Ì¬Á´½ÓÁËicuµÄicuuc.libºÍicuin.lib£¨ÕâÁ½¸öÎÄ¼şÊÇÖĞÎÄ·Ö´Ê±ØĞëµÄ£¬ÆäËûlib¿ÉÑ¡£©£¬ËùÒÔ×îÖÕµÄapsw.pyd¶¯Ì¬¿âÒÑ¾­´øÓĞÒÔÉÏÁ½¸ö¾²Ì¬¿âÌá¹©µÄICU¹¦ÄÜ¡£
+3.6 ç”±äºé™æ€é“¾æ¥äº†icuçš„icuuc.libå’Œicuin.libï¼ˆè¿™ä¸¤ä¸ªæ–‡ä»¶æ˜¯ä¸­æ–‡åˆ†è¯å¿…é¡»çš„ï¼Œå…¶ä»–libå¯é€‰ï¼‰ï¼Œæ‰€ä»¥æœ€ç»ˆçš„apsw.pydåŠ¨æ€åº“å·²ç»å¸¦æœ‰ä»¥ä¸Šä¸¤ä¸ªé™æ€åº“æä¾›çš„ICUåŠŸèƒ½ã€‚
 
-4 ²âÊÔsqlite3 ICU supportÊ¹ÓÃÊ±£¬
-¿ÉÒÔ²Î¿¼http://apidoc.apsw.googlecode.com/hg/example.html ¹Ù·½ÓÃ·¨¡£¶øicuÖ§³Ösqlite3Êı¾İ¿âÖĞÎÄÈ«ÎÄËÑË÷£¬¿ÉÒÔ
-ÓÃÏàÓ¦Êı¾İ¿âºÍSQL²âÊÔ¡£
+4 æµ‹è¯•sqlite3 ICU supportä½¿ç”¨æ—¶ï¼Œ
+å¯ä»¥å‚è€ƒhttp://apidoc.apsw.googlecode.com/hg/example.html å®˜æ–¹ç”¨æ³•ã€‚è€Œicuæ”¯æŒsqlite3æ•°æ®åº“ä¸­æ–‡å…¨æ–‡æœç´¢ï¼Œå¯ä»¥
+ç”¨ç›¸åº”æ•°æ®åº“å’ŒSQLæµ‹è¯•ã€‚
 
 
-5 ¸ü¶àÎÄµµ£º
+5 æ›´å¤šæ–‡æ¡£ï¼š
 
 ICU  http://apidoc.apsw.googlecode.com/hg/extensions.html#icu
 
 with mingw, apsw compile error: -mno-cygwin   http://stackoverflow.com/questions/8531983/easy-install-u-cython-fails-complaining-about-vcvarsall-bat-and-mno-cygwin
 
-¹ØÓÚpython¶Ôsqlite3Êı¾İ¿â ÖĞÎÄ·Ö´Ê µÄÖ§³Ö£¨Ò²¾ÍÊÇĞèÒªunicode·Ö´ÊÖ§³Ö£¬ÒÔicu¿âÎªÀı£©¡£apsw ÓĞÕâÑùÒ»¸öËµÃ÷£º
+å…³äºpythonå¯¹sqlite3æ•°æ®åº“ ä¸­æ–‡åˆ†è¯ çš„æ”¯æŒï¼ˆä¹Ÿå°±æ˜¯éœ€è¦unicodeåˆ†è¯æ”¯æŒï¼Œä»¥icuåº“ä¸ºä¾‹ï¼‰ã€‚apsw æœ‰è¿™æ ·ä¸€ä¸ªè¯´æ˜ï¼š
 
 1
 If you want to do manipulation of unicode text such as upper/lower casing or sorting then you need to know about locales. This is because the exact same sequence of characters sort, upper case, lower case etc differently depending on where you are. As an example Turkic languages have multiple letter i, German has ? which behaves like ss, various accents sort differently in different European countries. Fortunately there is a libary you can ask to do the right locale specific thing ICU. A default SQLite compilation only deals with the 26 letter Roman alphabet. If you enable ICU with SQLite then you get good stuff. See the Building section on how to enable ICU for SQLite with APSW. Note that Python does not currently include ICU support and hence sorting, upper/lower casing etc are limited and do not take locales into account.
 
-À´Ô´£º http://apidoc.apsw.googlecode.com/hg/types.html?highlight=icu%20build
+æ¥æºï¼š http://apidoc.apsw.googlecode.com/hg/types.html?highlight=icu%20build
 
-Ò²¾ÍÊÇpython½ØÖ¹2013.1.10»¹Î´Ìá¹©¶ÔicuµÄ¹Ù·½Ö§³Ö¡£
+ä¹Ÿå°±æ˜¯pythonæˆªæ­¢2013.1.10è¿˜æœªæä¾›å¯¹icuçš„å®˜æ–¹æ”¯æŒã€‚
