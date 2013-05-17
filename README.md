@@ -5,9 +5,18 @@
 
 Everyone's Chinese Traditional Medicine manual, support the solve of small problem, and get more common-sense of Chinese Traditional Medicine as daily skills.
 
+
 当前开发状态Current status： 
 
 非常初期。Under heavily development.
+
+
+加入开发 how to join：
+
+发送邮件到 kjpioo2006 AT gmail dot com
+
+email to kjpioo2006 AT gmail dot com
+
 
 软件依赖 Dependences：
 
@@ -15,17 +24,21 @@ Everyone's Chinese Traditional Medicine manual, support the solve of small probl
 
 pyqt 4.9.6 or more current version, sqlite3(need fts support), python 2.7.3
 
+
 如何运行 Getting started
 
 In Windows, double click main.py file.
+
 
 数据库可以从这里下载 Db file can be download from:
 
 http://s.yunio.com/4jw6pq and replace the empty "f.db" file of source code file.
 
+
 截图 The screenshots:
 
 http://s.yunio.com/qU1jec
+
 
 许可 LICENSE：
 
