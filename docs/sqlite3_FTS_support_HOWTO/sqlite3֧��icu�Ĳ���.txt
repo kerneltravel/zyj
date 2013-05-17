@@ -1,0 +1,2 @@
+Administrator@WWW-7A633493240 /d/tmp/qt/zyj/zyj/icu/sqlite-autoconf-3071501
+$ gcc -c sqlite3.c -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_ICU -I/d//tmp/qt/zyj/zyj/icu/icu/include/ -L/d//tmp/qt/zyj/zyj/icu/icu/lib/ -licudt -licuuc -Os -v -osqlite3.dll

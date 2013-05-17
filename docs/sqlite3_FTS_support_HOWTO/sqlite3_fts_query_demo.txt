@@ -1,0 +1,1 @@
+关键字查询示例(需要sqlite3数据库支持icu和fts特性):select docid,snippet(articles_vt) from articles_vt where articles_vt match '感冒 AND 生姜' ;注意：对fts表进行查找时，and操作符必须大写AND，小写无效。 OR 也一样。

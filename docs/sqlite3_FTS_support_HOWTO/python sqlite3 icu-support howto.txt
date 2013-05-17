@@ -1,0 +1,110 @@
+python sqlite3 icu-support howto
+
+缘起：sqlite3支持全文搜索，需要fts3/4模块(http://www.sqlite.org/fts3.html)启用。
+该模块的分词方式默认支持porter,simple等，simple是基本的。他们区别具体看这里(
+http://www.sqlite.org/fts3.html#tokenizer)。icu可以作为sqlite3的extension方式启用。
+
+apsw是sqlite3的python封装：
+APSW is a Python wrapper for the SQLite embedded relational database engine. In contrast to other wrappers such as pysqlite it focuses on being a minimal layer over SQLite attempting just to translate the complete SQLite API into Python. The documentation has a section on the differences between APSW and pysqlite. APSW supports CPython 2.3 onwards and CPython 3.1 onwards.
+
+1 icu （http://site.icu-project.org/）
+可以用c++那篇产生的icu
+
+2 安装mingw for windows (win32)
+2.1) mingw-get-inst-20120426.exe (662.7 kB) 
+以后在这个环境中编译apsw。 因为如果用vc++编译apsw会提示 找不到 vcvarsall.bat，而且没有解决办法，再加上vc编译器对于
+amalgamation 版单源码文件的sqlite3，代码长度超过了最大限度，也不能编译成功。而mingw没有这个问题。
+2.2) 到http://code.google.com/p/apsw/downloads/list 下载最新版apsw源码（2013.1.10为 apsw-3.7.15.1-r1.zip
+我 python是2.7.3版本，所以下载这个2.7的）
+
+3 compile apsw(icu enabled)
+apsw编译时会自动下载最新版sqlite3 amalgamation 源码包。以供生成apsw.pyd动态库。
+3.1 不做其他修改，尝试编译：python setup.py fetch --missing-checksum-ok --all build --enable-all-extensions --compile=mingw32 install test
+3.2 以上编译中出现的-mno-cygwin 错误（只针对mingw 或者cywin命令行），解决方法可以参考  http://stackoverflow.com/questions/8531983/easy-install-u-cython-fails-complaining-about-vcvarsall-bat-and-mno-cygwin
+3.3 以上编译中可以看到 gcc.exe 行的-D各项宏定义中没有 SQLITE_ENABLE_ICU，从setup.py中可以看到由于windows 平台没有icu-config脚本，只有
+linux/mac环境才有，所以setup.py在windows下默认不安装icu。
+3.4 手从修改setup.py文件。下面是原setup.py和修改后的setup.py文件（取个别名modified_setup.py）的diff结果：
+=========================================================================================================
+--- D:/apsw-3.7.15.1-r1/apsw-3.7.15.1-r1/setup.py	星期六 十二月 22 10:32:00 2012
++++ D:/apsw-3.7.15.1-r1/apsw-3.7.15.1-r1/modified_setup.py	星期四 一月 10 17:34:31 2013
+@@ -198,7 +198,7 @@
+         # work out the version
+         if self.version is None:
+             write("  Getting download page to work out current SQLite version")
+-            page=self.download("https://sqlite.org/download.html", text=True, checksum=False)
++            page=self.download("http://sqlite.org/download.html", text=True, checksum=False)
+             match=re.search('sqlite-amalgamation-3([0-9][0-9])([0-9][0-9])([0-9][0-9]).zip"', page)
+             if match:
+                 self.version="3.%d.%d.%d" % tuple([int(match.group(n)) for n in range(1,4)])
+@@ -226,13 +226,13 @@
+                 write("  Getting the SQLite amalgamation")
+ 
+             if self.version=="fossil":
+-                AURL="https://sqlite.org/src/zip/sqlite3.zip?uuid=trunk"
++                AURL="http://sqlite.org/src/zip/sqlite3.zip?uuid=trunk"
+                 checksum=False
+             else:
+                 if sys.platform=="win32":
+-                    AURL="https://sqlite.org/sqlite-amalgamation-%s.zip" % (self.webversion,)
++                    AURL="http://sqlite.org/sqlite-amalgamation-%s.zip" % (self.webversion,)
+                 else:
+-                    AURL="https://sqlite.org/sqlite-autoconf-%s.tar.gz" % (self.webversion,)
++                    AURL="http://sqlite.org/sqlite-autoconf-%s.tar.gz" % (self.webversion,)
+                 checksum=True
+ 
+             data=self.download(AURL, checksum=checksum)
+@@ -500,9 +500,11 @@
+         v=beparent.finalize_options(self)
+ 
+         if self.enable_all_extensions:
+-            exts=["fts4", "fts3", "fts3_parenthesis", "rtree"]
++            exts=["fts4", "fts3", "fts3_parenthesis", "rtree","icu"]
+             if find_in_path("icu-config"):
+                 exts.append("icu")
++            else:
++                print 'err: icu not found'
+             if not self.enable:
+                 self.enable=",".join(exts)
+             else:
+@@ -597,6 +599,15 @@
+         if not load_extension:
+             ext.define_macros.append( ("SQLITE_OMIT_LOAD_EXTENSION", 1) )
+ 
++        #linpeihua mannually add icu path
++        ext.include_dirs.append("d:\\tmp\\qt\\zyj\\zyj\\icu\\icu\\include")
++        ext.define_macros.append(('USE_ICU','1'))
++        ext.define_macros.append(('SQLITE_ENABLE_ICU','1'))
++        ext.library_dirs.append("d:\\tmp\\qt\\zyj\\zyj\\icu\\icu\\lib\\")
++        ext.libraries.append("icuuc")
++        ext.libraries.append("icudt")
++        ext.libraries.append("icuin")
++        
+         # icu
+         if addicuinclib:
+             foundicu=False
+=========================================================================================================
+其中 ext.libraries.append("icudt") 这个可以去掉。icudt.lib文件不是icu中文分词必须。
+其中 ext.define_macros.append(('SQLITE_ENABLE_ICU','1')) 也可以去掉。因为之前的修改已经包含icu extension，会生成这个宏定义。
+3.5 重新运行3.1中命令，成功得到所需apsw.pyd动态库，且自动安装到c:/python/lib/site-packages/下。
+
+3.6 由于静态链接了icu的icuuc.lib和icuin.lib（这两个文件是中文分词必须的，其他lib可选），所以最终的apsw.pyd动态库已经带有以上两个静态库提供的ICU功能。
+
+4 测试sqlite3 ICU support使用时，
+可以参考http://apidoc.apsw.googlecode.com/hg/example.html 官方用法。而icu支持sqlite3数据库中文全文搜索，可以
+用相应数据库和SQL测试。
+
+
+5 更多文档：
+
+ICU  http://apidoc.apsw.googlecode.com/hg/extensions.html#icu
+
+with mingw, apsw compile error: -mno-cygwin   http://stackoverflow.com/questions/8531983/easy-install-u-cython-fails-complaining-about-vcvarsall-bat-and-mno-cygwin
+
+关于python对sqlite3数据库 中文分词 的支持（也就是需要unicode分词支持，以icu库为例）。apsw 有这样一个说明：
+
+1
+If you want to do manipulation of unicode text such as upper/lower casing or sorting then you need to know about locales. This is because the exact same sequence of characters sort, upper case, lower case etc differently depending on where you are. As an example Turkic languages have multiple letter i, German has ? which behaves like ss, various accents sort differently in different European countries. Fortunately there is a libary you can ask to do the right locale specific thing ICU. A default SQLite compilation only deals with the 26 letter Roman alphabet. If you enable ICU with SQLite then you get good stuff. See the Building section on how to enable ICU for SQLite with APSW. Note that Python does not currently include ICU support and hence sorting, upper/lower casing etc are limited and do not take locales into account.
+
+来源： http://apidoc.apsw.googlecode.com/hg/types.html?highlight=icu%20build
+
+也就是python截止2013.1.10还未提供对icu的官方支持。

@@ -1,0 +1,250 @@
+sqlite3 icu howto
+
+缘起：sqlite3支持全文搜索，需要fts3/4模块(http://www.sqlite.org/fts3.html)启用。
+该模块的分词方式默认支持porter,simple等，simple是基本的。他们区别具体看这里(
+http://www.sqlite.org/fts3.html#tokenizer)。icu可以作为sqlite3的extension方式启用。
+
+1 icu （http://site.icu-project.org/）
+/*
+**compile-howto
+*/
+wget http://www.ictclas.org/down/50/ICTCLAS50_Windows_32_C.rar
+unrar ICTCLAS50_Windows_32_C.rar
+用vs打开 d:\tmp\qt\zyj\zyj\icu\icu\source\allinone\allinone.sln 进行默认编译。在icu
+目录内得到 bin/  lib/ include/
+dir bin/
+derb.exe      genrb.exe     icuio50d.dll  icupkg.exe	  icuuc50d.dll
+genbrk.exe    gensprep.exe  icuio50d.ilk  icutest50.dll   icuuc50d.ilk
+genccode.exe  icudt50.dll   icule50.dll   icutest50d.dll  makeconv.exe
+gencfu.exe    icuin50.dll   icule50d.dll  icutest50d.ilk  pkgdata.exe
+gencmn.exe    icuin50d.dll  icule50d.ilk  icutu50.dll	  testplug.dll
+gencnval.exe  icuin50d.ilk  iculx50.dll   icutu50d.dll	  testplug.ilk
+gendict.exe   icuinfo.exe   iculx50d.dll  icutu50d.ilk	  uconv.exe
+gennorm2.exe  icuio50.dll   iculx50d.ilk  icuuc50.dll
+dir lib/
+common.bsc   icuind.pdb  iculed.lib   icutestd.exp  icuuc.lib	  testplug.lib
+ctestfw.bsc  icuio.exp	 iculed.pdb   icutestd.lib  icuucd.exp	  testplugd.exp
+i18n.bsc     icuio.lib	 iculx.exp    icutestd.pdb  icuucd.lib	  testplugd.lib
+icudt.exp    icuiod.exp  iculx.lib    icutu.exp     icuucd.pdb	  testplugd.pdb
+icudt.lib    icuiod.lib  iculxd.exp   icutu.lib     io.bsc
+icuin.exp    icuiod.pdb  iculxd.lib   icutud.exp    layout.bsc
+icuin.lib    icule.exp	 iculxd.pdb   icutud.lib    layoutex.bsc
+icuind.exp   icule.lib	 icutest.exp  icutud.pdb    testplug.bsc
+icuind.lib   iculed.exp  icutest.lib  icuuc.exp     testplug.exp
+dir include/
+layout	unicode
+dir include/unicode/
+$ ls ../unicode/
+alphaindex.h        localpointer.h       tmutfmt.h              unifunct.h
+appendable.h        locdspnm.h           translit.h             unimatch.h
+basictz.h           locid.h              tzfmt.h                unirepl.h
+bms.h               measfmt.h            tznames.h              uniset.h
+bmsearch.h          measunit.h           tzrule.h               unistr.h
+brkiter.h           measure.h            tztrans.h              unorm.h
+bytestream.h        messagepattern.h     ubidi.h                unorm2.h
+bytestrie.h         msgfmt.h             ubrk.h                 unum.h
+bytestriebuilder.h  normalizer2.h        ucal.h                 uobject.h
+calendar.h          normlzr.h            ucasemap.h             upluralrules.h
+caniter.h           numfmt.h             ucat.h                 uregex.h
+chariter.h          numsys.h             uchar.h                urename.h
+choicfmt.h          parseerr.h           ucharstrie.h           urep.h
+coleitr.h           parsepos.h           ucharstriebuilder.h    ures.h
+coll.h              platform.h           uchriter.h             uscript.h
+colldata.h          plurfmt.h            uclean.h               usearch.h
+curramt.h           plurrule.h           ucnv.h                 uset.h
+currpinf.h          ptypes.h             ucnv_cb.h              usetiter.h
+currunit.h          putil.h              ucnv_err.h             ushape.h
+datefmt.h           rbbi.h               ucnvsel.h              uspoof.h
+dbbi.h              rbnf.h               ucol.h                 usprep.h
+dcfmtsym.h          rbtz.h               ucoleitr.h             ustdio.h
+decimfmt.h          regex.h              uconfig.h              ustream.h
+docmain.h           rep.h                ucsdet.h               ustring.h
+dtfmtsym.h          resbund.h            ucurr.h                ustringtrie.h
+dtintrv.h           schriter.h           udat.h                 utext.h
+dtitvfmt.h          search.h             udata.h                utf.h
+dtitvinf.h          selfmt.h             udateintervalformat.h  utf16.h
+dtptngen.h          simpletz.h           udatpg.h               utf32.h
+dtrule.h            smpdtfmt.h           udisplaycontext.h      utf8.h
+errorcode.h         sortkey.h            uenum.h                utf_old.h
+fieldpos.h          std_string.h         ugender.h              utmscale.h
+fmtable.h           strenum.h            uidna.h                utrace.h
+format.h            stringpiece.h        uiter.h                utrans.h
+fpositer.h          stringtriebuilder.h  uldnames.h             utypes.h
+gender.h            stsearch.h           uloc.h                 uvernum.h
+gregocal.h          symtable.h           ulocdata.h             uversion.h
+icudataver.h        tblcoll.h            umachine.h             vtzone.h
+icuplug.h           timezone.h           umisc.h
+idna.h              tmunit.h             umsg.h
+listformatter.h     tmutamt.h            unifilt.h
+
+
+备注：
+1 待优化。file:///D:/tmp/qt/zyj/zyj/icu/icu/readme.html  Hardcode the default charset to UTF-8
+2 vs默认编译时，选项中可以添加-Os 这样对release是进一步的优化
+3 这里三个目录都是以后编译sqlite icu支持所需指定的路径。
+
+编译sqlite3（FTS3 FTS4 ICU enabled）
+1 get source 
+wget http://www.sqlite.org/sqlite-src-3071501.zip
+unzip qlite-src-3071501.zip
+cd sqlite-src-3071501
+
+2 before compile
+（1）根据 sqlite-src的 README
+	SQLite does not require TCL to run, but a TCL installation is required
+by the makefiles.  SQLite contains a lot of generated code and TCL is
+used to do much of that code generation.  The makefile also requires
+AWK.
+	需要在windows下可以安装awk和tcl环境：
+	（awk）http://jaist.dl.sourceforge.net/project/mingw/Installer/mingw-get-inst/mingw-get-inst-20120426/mingw-get-inst-20120426.exe
+	（tcl）http://nchc.dl.sourceforge.net/project/tcl/Tcl/8.5.13/tcl8513-src.zip
+（1.1） tcl编译
+	tcl8.5.13\win>nmake -f makefile.vc
+	tcl8.5.13\win>nmake -f makefile.vc install  （则默认安装到C:/program files/TCL/）
+（2） 修改 sqlite-src-3071501\ 在ms win下的makefile.msc 参数，开启ICU
+=============makefile changed info start============================================
+diff --git "a/D:\\path\\to\\sqlite-src-3071501\\Makefile.msc" "b/D:\path\\to\\ICU-enabled\\Makefile.msc"
+index 3685ba3..d12e5d0 100644
+--- "a/D:\\path\\to\\sqlite-src-3071501\\Makefile.msc"
++++ "b/D:\path\\to\\ICU-enabled\\Makefile.msc"
+@@ -15,8 +15,10 @@ USE_AMALGAMATION = 1
+ 
+ # Set this non-0 to use the International Components for Unicode (ICU).
+ #
++#!IFNDEF USE_ICU
++#linpeihua set USE_ICU to default enabled
+ !IFNDEF USE_ICU
+-USE_ICU = 0
++USE_ICU = 1
+ !ENDIF
+ 
+ # Set this non-0 to dynamically link to the MSVC runtime library.
+@@ -91,7 +93,7 @@ WIN32HEAP = 0
+ # 5 == SQLITE_ENABLE_IOTRACE: Enables output from the IOTRACE() macros.
+ #
+ !IFNDEF DEBUG
+-DEBUG = 0
++DEBUG = 1
+ !ENDIF
+ 
+ # Check for the predefined command macro CC.  This should point to the compiler
+@@ -185,7 +187,7 @@ NLTLIBPATHS = "/LIBPATH:$(NCRTLIBPATH)" "/LIBPATH:$(NSDKLIBPATH)"
+ # will run on the target platform.  (BCC and TCC are usually the
+ # same unless your are cross-compiling.)
+ #
+-TCC = $(CC) -W3 -DSQLITE_OS_WIN=1 -I$(TOP) -I$(TOP)\src -fp:precise
++TCC = $(CC) -W3 -DSQLITE_OS_WIN=1 -I$(TOP) -I$(TOP)\src -Id:\tmp\qt\zyj\zyj\icu\icu\include -fp:precise
+ RCC = $(RC) -DSQLITE_OS_WIN=1 -I$(TOP) -I$(TOP)\src
+ 
+ # When compiling the library for use in the WinRT environment,
+@@ -304,11 +306,11 @@ RCC = $(RCC) -DSQLITE_WIN32_MALLOC_VALIDATE=1
+ # version on this machine.
+ #
+ !IFNDEF TCLINCDIR
+-TCLINCDIR = c:\tcl\include
++TCLINCDIR = "c:\Program Files\Tcl\include\"
+ !ENDIF
+ 
+ !IFNDEF TCLLIBDIR
+-TCLLIBDIR = c:\tcl\lib
++TCLLIBDIR = "c:\Program Files\Tcl\lib"
+ !ENDIF
+ 
+ !IFNDEF LIBTCL
+@@ -321,11 +323,11 @@ LIBTCL = tcl85.lib
+ # this machine.
+ #
+ !IFNDEF ICUINCDIR
+-ICUINCDIR = c:\icu\include
++ICUINCDIR = d:\tmp\qt\zyj\zyj\icu\icu\include
+ !ENDIF
+ 
+ !IFNDEF ICULIBDIR
+-ICULIBDIR = c:\icu\lib
++ICULIBDIR = d:\tmp\qt\zyj\zyj\icu\icu\lib
+ !ENDIF
+ 
+ !IFNDEF LIBICU
+@@ -380,7 +382,8 @@ RCC = $(RCC) -DSQLITE_TEMP_STORE=1
+ # LEMON parser generator and the mkkeywordhash tool as well.
+ 
+ # BEGIN standard options
+-OPT_FEATURE_FLAGS = $(OPT_FEATURE_FLAGS) -DSQLITE_ENABLE_FTS3=1
++# linpeihua set -DSQLITE_ENABLE_FTS4=1 -DSQLITE_ENABLE_FTS3_PARENTHESIS=1 -DSQLITE_ENABLE_ICU=1 to be default enabled
++OPT_FEATURE_FLAGS = $(OPT_FEATURE_FLAGS) -DSQLITE_ENABLE_FTS3=1 -DSQLITE_ENABLE_FTS4=1 -DSQLITE_ENABLE_FTS3_PARENTHESIS=1
+ OPT_FEATURE_FLAGS = $(OPT_FEATURE_FLAGS) -DSQLITE_ENABLE_RTREE=1
+ OPT_FEATURE_FLAGS = $(OPT_FEATURE_FLAGS) -DSQLITE_ENABLE_COLUMN_METADATA=1
+ # END standard options
+==============makefile change end==========================================================
+这里关键修改是：1 USE_ICU使能 2 OPT_FEATURE_FLAGS增加 ENABLE*FTS3/4选项
+这里其他修改如tcl目录、ICU LIB目录可以根据具体环境设定。
+
+备注(2 before compile)：
+1 发布时需要将 makefile.msc的DEBUG选项设为0
+
+3 compile sqlite3(icu enabled)
+sqlite-src-3071501>nmake -f Makefile.msc
+得到：
+sqlite3.h
+sqlite3.c
+sqlite3.lib
+sqlite3.dll
+sqlite3.exe
+sqlite3.exp
+sqlite3rc.h
+libsqlite3.lib
+由于静态链接了icu的icuuc.lib和icuin.lib，所以sqlite3.dll已经带有以上两个静态库提供的ICU功能。
+
+4 测试sqlite3 ICU support
+(1)用sqlite3编译得到的sqlite3.exe执行测试：
+...
+CREATE VIRTUAL TABLE names_t USING fts3(a, b, tokenize=icu zh_CN);
+INSERT INTO names_t(a,b) VALUES('简介1','我们的中国，有着辉煌的 长久 历史');
+select a,b from names_t where b match '长久';
+select a,b from names_t where b match '中国';
+SELECT snippet(names_t) FROM names WHERE names MATCH '中国';
+(2)项目中集成sqlite3 icu功能
+可以参考 sqlitebrowser （http://sourceforge.net/projects/sqlitebrowser/）开源软件，首先用其自带（或系统默认）的
+替换掉其自带的sqlitebrowser\trunk\sqlitebrowser\sqlitebrowser\debug\sqlite3.dll，执行3中的sql icu查询,
+都提示“module fts3/fts4不支持”或者“Unknown Tokenizer: icu”。
+再用自己编译的有icu支持的替换掉sqlitebrowser\trunk\sqlitebrowser\sqlitebrowser\debug\sqlite3.dll 文件，
+再执行以上测试。sqlitebrowser项目已经自带了sqlite_source/sqlite3.c等源文件，但我需要使用的自己编译的
+sqlite3.dll所以在sqlitebrowser.pro里面去掉sqlite_source/sqlite3.c 的包含。
+======================sqlitebrowser.pro修改================================
+--- C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/sqlitebrowser.pro-revBASE.svn000.tmp.pro	星期二 十二月 29 08:58:10 2009
++++ D:/tmp/qt/zyj/zyj/icu/sqlitebrowser/trunk/sqlitebrowser/sqlitebrowser/sqlitebrowser.pro	星期二 十二月 25 19:49:03 2012
+@@ -31,7 +31,7 @@
+     browsermain.cpp \
+     sqlitedb.cpp \
+     sqlbrowser_util.c \
+-    sqlite_source/sqlite3.c \
++#    sqlite_source/sqlite3.c \
+     aboutform.cpp \
+     addfieldform.cpp \
+     addfieldtypeform.cpp \
+@@ -78,3 +78,6 @@
+     CONFIG += x86 \
+         ppc
+ }
++#win32:INCLUDEPATH += "d:/tmp/qt/zyj/zyj/icu/icu/include/"
++#win32:LIBS += -Ld:/tmp/qt/zyj/zyj/icu/icu/lib/ -licuuc -licudt  #这里不需要静态链接icu库了。“#”表示注释掉
++win32:LIBS += -LD:/path/to/sqlite-src-3071501/ -lsqlite3
+\ No newline at end of file
+===========================
+
+备注（4测试）
+（1）
+
+
+5 备注
+（1）icu功能可以和chrome浏览器最新版的分词效果对比。它默认就是用icu。
+《谷歌浏览器里牛逼的中文分词》( http://initiative.yo2.cn/archives/640309 )
+（2）sqlite3编译，官方推荐用amalgamation包（http://www.sqlite.org/sqlite-amalgamation-3071501.zip）
+经过实践，我认为sqlite3-src 压缩包更适合在软件初期和测试阶段用，因为sqlite3-src包提供了可配置
+的makefile.msc文件，而amalgamation包只提供了4个源文件，使得出现问题后非常不直观。比如https://github.com/mapbox/carmen/issues/1
+这里的编译方式是：
+./configure CPPFLAGS="-DSQLITE_ENABLE_ICU `icu-config --cppflags`" LDFLAGS="`icu-config --ldflags`"
+make & make install
+我还不理解其中 “`icu-config --cppflags`”在mingw环境下怎么做到。
+（3）icu的windows编译，更多的可以参考icu/readme.html#HowToBuildWindows
+（4）sqlite3的编译，更多的可以参考http://www.sqlite.org/cvstrac/wiki?p=HowToCompile
