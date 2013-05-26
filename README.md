@@ -5,6 +5,37 @@
 
 Everyone's Chinese Traditional Medicine manual, support the solve of small problem, and get more common-sense of Chinese Traditional Medicine as daily skills.
 
+特色 feature：
+中医典籍信息化实用检索。
+开源软件遵循GPL3协议，绿色软件。
+关联信息推荐，追求更合理有价值的信息。
+Chinese Traditional Medicine classical documents IMS, featured by its practical searching.
+Released under GPL3, green software.
+Keyword best related infomation suggested, which focus on the usefulness of infomation.
+
+
+路线图 roadmaps：
+
+V0.1.0功能描述：
+用户能以任意关键词查询古籍中对此的相关描述。以获得古籍对此问题的描述或者解决之道
+根据关键词，用户能单独查找特定的一本古籍、该种古籍中的特定章节、该章节的特定篇目内容
+V0.1.0:
+Get descriptions of issue from documents by typing some keywords, and get the related solutions.
+With the keyword, the related book and some specific chapter and its specific content will be here for choose.
+
+V0.2.0（增加）功能描述：
+查询结果可以进一步依据“理”、“法”、“方”、“药”精细筛选
+V0.2.0( functions added):
+Search result can be devided into aspects, e.g. "li,fa,fang,yao", to be aspects specific.
+
+V0.3.0（增加）功能描述：
+根据用户查询词，推荐有效的关联词作为推广搜索范围和精细化搜索的建议。效果类似于oschina.net 搜索页面右侧推荐 Tag 列表
+V0.3.0( functions added):
+suggested keywords, somewhat like the oschina.net's tag recommandation.
+
+V1.0.0：在线查询。
+V1.0.0:
+online search.
 
 当前开发状态Current status： 
 
