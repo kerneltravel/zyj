@@ -22,30 +22,23 @@ V0.2.0（增加）功能描述：
 V0.3.0（增加）功能描述：
 根据用户查询词，推荐有效的关联词作为推广搜索范围和精细化搜索的建议。效果类似于oschina.net 搜索页面右侧推荐 Tag 列表
 
-
 V1.0.0：在线查询。
-
 
 当前开发状态： 
 
 非常初期。
 
-
 加入开发：
 
 发送邮件到 kjpioo2006 AT gmail dot com。使用eric4作为IDE打开zyj.e4p文件，即可编辑源码或操作.ui文件、自动生成UI_* 文件。
-
 
 软件依赖 Dependences：
 
 需要安装pyqt 4.9.6或更高版本、sqlite3（需要启用fts特性）、python 2.7.3。
 
-
-
 如何运行 Getting started：
+
 中医经是跨平台软件。在Windows下可直接双击main.py文件运行。Linux下可在终端下cd到zyj目录后，输入python main.py。macosx下用法同Linux。
-
-
 
 数据库可以从这里下载:
 
@@ -67,9 +60,13 @@ Everyone's Chinese Traditional Medicine manual, support the solve of small probl
 feature：
 
 Chinese Traditional Medicine classical documents IMS, featured by its practical searching.
+
 Released under GPL3, green software.
+
 Keyword best related infomation suggested, which focus on the usefulness of infomation.
+
 Thunder speed as the search process, thanks to sqlite3 projects and its FTS4 power.
+
 roadmaps：
 
 V0.1.0:
@@ -86,6 +83,7 @@ V1.0.0:
 online search.
 
 Current status:
+
 Under heavily development.
 
 how to join：
@@ -101,10 +99,8 @@ Zyj is a cross-platform software.Under Windows, double click main.py file. under
 Db file can be download from:
 http://s.yunio.com/4jw6pq and replace the empty "f.db" file of source code file.
 
-
 The screenshots:
 http://s.yunio.com/qU1jec
 
 LICENSE：
-
 General Public License GPL3
