@@ -32,11 +32,11 @@ V1.0.0：在线查询。
 
 发送邮件到 kjpioo2006 AT gmail dot com。使用eric4作为IDE打开zyj.e4p文件，即可编辑源码或操作.ui文件、自动生成UI_* 文件。
 
-软件依赖 Dependences：
+软件依赖：
 
 需要安装pyqt 4.9.6或更高版本、sqlite3（需要启用fts特性）、python 2.7.3。
 
-如何运行 Getting started：
+如何运行：
 
 中医经是跨平台软件。在Windows下可直接双击main.py文件运行。Linux下可在终端下cd到zyj目录后，输入python main.py。macosx下用法同Linux。
 
